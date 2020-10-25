@@ -80,7 +80,7 @@ def critic_fail():
                "un goblin potrebbe farti uno sgambetto e ti romperesti una gamba, se non peggio", "OH SI’ SI’ ;}",
                "GODOOOOOOOOOOOOOO!1!1!", "Press F to pay respect"]
     reaction = random.randint(0, len(phrases) - 1)
-    return reaction
+    return phrases[reaction]
 
 
 def fails():
@@ -88,7 +88,7 @@ def fails():
                      "forse la prossima... ANDRA' PEGGIO AHAHAHAH", "ahah", "mi sa di NO!", "probabile fallimento",
                      "fai qualcosa di importante, mi raccomando :}", "GODO!", "oh Sì :]", "F"]
     reaction = random.randint(0, len(fails_phrases) - 1)
-    return reaction
+    return fails_phrases[reaction]
 
 
 def limit_numbers():
@@ -96,14 +96,14 @@ def limit_numbers():
                       "stai passando tra due territori nemici in lotta: uno amico dei PG e uno loro nemico (inutile dire che lo spirito che muove i dadi è tuo acerrimo nemico BWAHAHA)",
                       "DM tira una monetina"]
     reaction = random.randint(0, len(limits_phrases) - 1)
-    return reaction
+    return limits_phrases[reaction]
 
 
 def success_numbers():
     success_phrases = ["not bad", "okay", "okkidoki", "sei passato… rimedieremo alla prossima BWAHAHA", "complimenti",
                        "successo", "uffa -_-", "non ti emozionare perché è una ruota, o meglio un dado che gira"]
     reaction = random.randint(0, len(success_phrases) - 1)
-    return reaction
+    return success_phrases[reaction]
 
 
 def max_number():
@@ -114,7 +114,7 @@ def max_number():
                    "potresti provare a volare e non morire, é un consiglio dal mio cuore di ossidiana :}",
                    "non gasarti-_-"]
     reaction = random.randint(0, len(max_phrases) - 1)
-    return reaction
+    return max_phrases[reaction]
 
 
 simplemode = False
