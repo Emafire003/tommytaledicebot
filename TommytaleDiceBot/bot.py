@@ -157,7 +157,7 @@ def run():
             await message.channel.send("Ho 30 ha intelligenza, 15 a creatività. Tu quanto hai?")
        if message.content.startswith(client.user + " bot stupido"):
             await message.channel.send("Hai ferito i miei sentimenti. Mi disattivo. :(")
-            retrun
+            retrun 1/0
 
         # Checks if the command !dsimple gets executed and chages the mode accordingly
         if message.content.startswith('!dsimple'):
