@@ -3,7 +3,7 @@ import discord
 import random
 
 #Bot Version: v1.1.2
-#Contributors: Emafire003, Emafir3
+#Contributors: Emafire003, Emafir3, Barry l'oritteropo
 
 TOKEN=""
 
@@ -55,8 +55,8 @@ def gen_d12():
 
 #those are the dice's spirit reactions/queste sono le reazioni dello spirito dei dadi
 def critic_fail():
-    1_phrases = ["BWAHAHAHAAHAHAHAHAHAHAHAHAHAHAHAHAHAH", "finalmente", "* happy evil dice noises *", "* sad player noises *", "un goblin potrebbe farti uno sgambetto e ti romperesti una gamba, se non peggio", "OH SI’ SI’ ;}", "GODOOOOOOOOOOOOOO!1!1!", "Press F to pay respect"]
-    reaction = random.randint(0, len(1_phrases)-1)
+    phrases = ["BWAHAHAHAAHAHAHAHAHAHAHAHAHAHAHAHAHAH", "finalmente", "* happy evil dice noises *", "* sad player noises *", "un goblin potrebbe farti uno sgambetto e ti romperesti una gamba, se non peggio", "OH SI’ SI’ ;}", "GODOOOOOOOOOOOOOO!1!1!", "Press F to pay respect"]
+    reaction = random.randint(0, len(phrases)-1)
     return await message.channel.send(reaction)
 def fails():
     fails_phrases = ["Che schifo", "Sorry ;>", "mi dispiace", "forse la prossima", "forse la prossima... ANDRA' PEGGIO AHAHAHAH", "ahah", "mi sa di NO!", "probabile fallimento", "fai qualcosa di importante, mi raccomando :}", "GODO!", "oh Sì :]", "F"]
@@ -76,6 +76,7 @@ def max_number():
     return await message.channel.send(reaction)
 	
 simplemode = False
+comments = True
 
 def run():
     client = discord.Client()
@@ -94,6 +95,7 @@ def run():
     @client.event
     async def on_message(message):
         global simplemode
+	global comments
         #check to prevent the bot triggering itself
         if message.author == client.user:
             return
@@ -108,23 +110,18 @@ def run():
             else:
                 simplemode = True
             await message.channel.send("Modalità semplice:"+str(simplemode))
+	if message.content.startswith('!dcomments'):
+            if(comments):
+                comments = False
+            else:
+                comments = True
+            await message.channel.send("Commenti:"+str(comments))
 
         #Checks the mode. If true, then it doesn't use imgs / Controlla la mode. Se vera, non userà le immagini
         if(not simplemode):
             #checks for the dice rolls and calls the relative function / controlla per i roll dei dadi tramite i comandi !d<> e chiama la relativa funzione
             if message.content.startswith('!d20'):
                 await message.channel.send(str(message.author)+" il dado ha per te deciso:", file=discord.File(gen_d20()))
-                    num = random.randint(1,20)
-                if(num == 1):
-                        critic_fail() 
-                        if(num > 1 && num < 11):
-                                fails_numbers()
-                                if(num >=11 && num < 15):
-                                        limits_numbers()
-                                        if(num >=15 and num <20):
-                                                success_numbers()
-                                                if(num == 20):
-                                                        max_number()
             elif message.content.startswith('!d4'):
                 await message.channel.send(str(message.author)+" il dado ha per te deciso:", file=discord.File(gen_d4()))
             elif message.content.startswith('!d6'):
@@ -142,8 +139,20 @@ def run():
                 #random.randint genera un numero casuale tra quelli.
                 #Anzichè metterlo direttamente nell'argomento, crea prima una varibile uguale a quello.
                 #Tipo num = random.randint(1,20) e usa quel numero per determinare cosa è uscito dal dado
-                e = discord.Embed(title=str(random.randint(1,20)))
+		num = random.randint(1,20)
+                e = discord.Embed(title=str(num))
                 await message.channel.send(str(message.author)+" il dado ha per te deciso:", embed=e)
+		if(comments):
+			if(num == 1):
+                		critic_fail() 
+               		elif(num > 1 and num < 11):
+				fails_numbers()
+			elif(num >=11 and num < 15):
+				limits_numbers()
+			elif(num >=15 and num <20):
+				success_numbers()
+			elif(num == 20):
+				max_number()
             elif message.content.startswith('!d4'):
                 e = discord.Embed(title=str(random.randint(1,4)))
                 await message.channel.send(str(message.author)+" il dado ha per te deciso:", embed=e)
