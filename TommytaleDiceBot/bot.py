@@ -57,23 +57,23 @@ def gen_d12():
 def critic_fail():
     phrases = ["BWAHAHAHAAHAHAHAHAHAHAHAHAHAHAHAHAHAH", "finalmente", "* happy evil dice noises *", "* sad player noises *", "un goblin potrebbe farti uno sgambetto e ti romperesti una gamba, se non peggio", "OH SI’ SI’ ;}", "GODOOOOOOOOOOOOOO!1!1!", "Press F to pay respect"]
     reaction = random.randint(0, len(phrases)-1)
-    return await message.channel.send(reaction)
+    return reaction
 def fails():
     fails_phrases = ["Che schifo", "Sorry ;>", "mi dispiace", "forse la prossima", "forse la prossima... ANDRA' PEGGIO AHAHAHAH", "ahah", "mi sa di NO!", "probabile fallimento", "fai qualcosa di importante, mi raccomando :}", "GODO!", "oh Sì :]", "F"]
     reaction = random.randint(0, len(fails_phrases)-1)
-    return await message.channel.send(reaction)
+    return reaction
 def limit_numbers():
     limits_phrases = ["buona fortuna", "auguri", "scelta del DM", "confine", "stai passando tra due territori nemici in lotta: uno amico dei PG e uno loro nemico (inutile dire che lo spirito che muove i dadi è tuo acerrimo nemico BWAHAHA)", "DM tira una monetina"]
     reaction = random.randint(0, len(limits_phrases)-1)
-    return await message.channel.send(reaction)
+    return reaction
 def success_numbers():
     success_phrases = ["not bad", "okay", "okkidoki", "sei passato… rimedieremo alla prossima BWAHAHA", "complimenti", "successo", "uffa -_-", "non ti emozionare perché è una ruota, o meglio un dado che gira"]
     reaction = random.randint(0, len(success_phrases)-1)
-    return await message.channel.send(reaction)
+    return reaction
 def max_number():
     max_phrases = ["come?!?", "NANI", "DA FUCK", "WTF", "WHAT THE FUCK","COSA?", "stai cheattando", "non ho parole", "complimenti", "fantastico", "gli dei ti hanno aiutato", "gli dei ti hanno conferito il potere di modellare le terre, aprire  le acque, spostare montagne o distruggiore un esercito", "gli dei ti hanno conferito il potere di modellare le terre, aprire  le acque, spostare montagne o distruggiore un esercito, ma tu...","potresti provare a volare e non morire, é un consiglio dal mio cuore di ossidiana :}", "non gasarti-_-"]
     reaction = random.randint(0, len(max_phrases)-1)
-    return await message.channel.send(reaction)
+    return reaction
 	
 simplemode = False
 comments = True
@@ -144,15 +144,15 @@ def run():
                 await message.channel.send(str(message.author)+" il dado ha per te deciso:", embed=e)
 		if(comments):
 			if(num == 1):
-                		critic_fail() 
+                		await message.channel.send(critic_fail())
                		elif(num > 1 and num < 11):
-				fails_numbers()
+				await message.channel.send(fails_numbers())
 			elif(num >=11 and num < 15):
-				limits_numbers()
+				await message.channel.send(limits_numbers())
 			elif(num >=15 and num <20):
-				success_numbers()
+				await message.channel.send(success_numbers())
 			elif(num == 20):
-				max_number()
+				await message.channel.send(max_number())
             elif message.content.startswith('!d4'):
                 e = discord.Embed(title=str(random.randint(1,4)))
                 await message.channel.send(str(message.author)+" il dado ha per te deciso:", embed=e)
