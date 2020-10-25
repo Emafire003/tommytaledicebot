@@ -147,6 +147,17 @@ def run():
             await message.channel.send(
                 "client.user =" + str(client.user) + "Message.author =" + str(message.author) + "\n\n" + str(
                     simplemode))
+       if message.content.startswith(client.user + " fai schifo"):
+            await message.channel.send("No u")
+       if message.content.startswith(client.user + " vaffanculo"):
+            await message.channel.send("Vacci tu")
+       if message.content.startswith(client.user + " bot stupido"):
+            await message.channel.send("Ho 30 ha intelligenza, 15 a creatività. Tu quanto hai?")
+       if message.content.startswith(client.user + " stupido"):
+            await message.channel.send("Ho 30 ha intelligenza, 15 a creatività. Tu quanto hai?")
+       if message.content.startswith(client.user + " bot stupido"):
+            await message.channel.send("Hai ferito i miei sentimenti. Mi disattivo. :(")
+            retrun
 
         # Checks if the command !dsimple gets executed and chages the mode accordingly
         if message.content.startswith('!dsimple'):
